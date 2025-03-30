@@ -100,6 +100,14 @@ const FoodDetail = () => {
     }
   };
 
+  const getExpiryStatusClass = (expiryStatus) => {
+    switch(expiryStatus) {
+      case 'eatable': return 'quality-eatable';
+      case 'spoiled': return 'quality-spoiled';
+      default: return '';
+    }
+  };
+
   // Handle image error and show fallback
   const handleImageError = () => {
     setImageError(true);
@@ -186,6 +194,7 @@ const FoodDetail = () => {
   const isAdmin = user && user.role === 'admin';
   const isAvailable = food.status === 'available';
   const isExpired = new Date(food.expiryDate) < new Date();
+  const isSpoiled = food.expiryStatus === 'spoiled';
 
   // Get image URL with transformations if needed
   const imageUrl = food.image && !imageError 
@@ -202,6 +211,11 @@ const FoodDetail = () => {
           <span className="status-icon">{getStatusIcon(food.status)}</span>
           {food.status}
         </div>
+        {isSpoiled && (
+          <div className="food-detail-spoiled-badge">
+            Spoiled
+          </div>
+        )}
       </div>
 
       <div className="food-detail-content">
@@ -285,11 +299,17 @@ const FoodDetail = () => {
                   <span className="detail-label">Status:</span>
                   <span className={`detail-status ${getStatusClass(food.status)}`}>{food.status}</span>
                 </div>
+                <div className="food-detail-item">
+                  <span className="detail-label">Quality:</span>
+                  <span className={`detail-quality ${getExpiryStatusClass(food.expiryStatus)}`}>
+                    {food.expiryStatus === 'eatable' ? 'Eatable' : 'Spoiled'}
+                  </span>
+                </div>
               </div>
             </div>
 
-            {(food.status === 'available' || food.status === 'partial') && !isExpired && auth.isAuthenticated && 
-              food.createdBy?._id !== user?.id && (
+            {(food.status === 'available' || food.status === 'partial') && !isExpired && !isSpoiled && 
+              auth.isAuthenticated && food.createdBy?._id !== user?.id && (
               <div className="food-detail-actions">
                 <button 
                   className="food-action-btn primary-btn"
@@ -337,6 +357,13 @@ const FoodDetail = () => {
               <div className="food-expired-message">
                 <span className="expired-icon">⚠️</span>
                 This food listing has expired and is no longer available for reservation.
+              </div>
+            )}
+
+            {isAvailable && isSpoiled && (
+              <div className="food-spoiled-message">
+                <span className="spoiled-icon">⚠️</span>
+                This food has been marked as spoiled and is no longer safe for consumption.
               </div>
             )}
 

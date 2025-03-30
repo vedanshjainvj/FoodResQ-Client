@@ -375,15 +375,14 @@
 }
 
 .food-card {
+  position: relative;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .food-card:hover {
@@ -734,4 +733,29 @@
 .food-detail .detail-value .expired-tag {
   color: #e53935;
   font-weight: 600;
+}
+
+/* Food spoiled badge */
+.food-spoiled-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff5252;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  z-index: 2;
+}
+
+/* Expiry status styles */
+.expiry-eatable {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.expiry-spoiled {
+  color: #ff5252;
+  font-weight: 500;
 }

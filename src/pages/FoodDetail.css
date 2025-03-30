@@ -907,4 +907,42 @@
 
 .reserve-btn:hover {
   background-color: #e6ee9c;
+}
+
+/* Food detail spoiled badge */
+.food-detail-spoiled-badge {
+  background-color: #ff5252;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+/* Quality status colors */
+.quality-eatable {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.quality-spoiled {
+  color: #ff5252;
+  font-weight: 500;
+}
+
+/* Spoiled message */
+.food-spoiled-message {
+  background-color: #ffebee;
+  border-left: 4px solid #ff5252;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.spoiled-icon {
+  margin-right: 10px;
+  font-size: 1.2rem;
 } 

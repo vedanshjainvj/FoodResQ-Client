@@ -9,6 +9,7 @@ const FoodListings = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState({
     status: '',
+    expiryStatus: 'eatable',
     sort: '-createdAt'
   });
   const [recentFoods, setRecentFoods] = useState([]);
@@ -27,6 +28,7 @@ const FoodListings = () => {
           page: currentPage,
           limit: 6,
           status: filter.status,
+          expiryStatus: filter.expiryStatus,
           sort: filter.sort
         });
         initialLoadRef.current = true;
@@ -36,7 +38,7 @@ const FoodListings = () => {
     };
 
     // Only fetch if it's the first load or filter/page has changed
-    if (!initialLoadRef.current || (initialLoadRef.current && (filter.status || filter.sort !== '-createdAt' || currentPage > 1))) {
+    if (!initialLoadRef.current || (initialLoadRef.current && (filter.status || filter.expiryStatus !== 'eatable' || filter.sort !== '-createdAt' || currentPage > 1))) {
       fetchFoods();
     }
   }, [getAllFood, currentPage, filter]);
@@ -50,7 +52,8 @@ const FoodListings = () => {
         setRecentLoading(true);
         const response = await getAllFood({
           limit: 3,
-          sort: '-createdAt'
+          sort: '-createdAt',
+          expiryStatus: 'eatable' // Only show eatable food in recent section
         });
         
         if (response && response.data) {
@@ -129,6 +132,14 @@ const FoodListings = () => {
     }
   };
 
+  const getExpiryStatusClass = (expiryStatus) => {
+    switch(expiryStatus) {
+      case 'eatable': return 'expiry-eatable';
+      case 'spoiled': return 'expiry-spoiled';
+      default: return '';
+    }
+  };
+
   const handleImageError = (event) => {
     event.target.src = '/images/default-food.svg';
   };
@@ -171,6 +182,9 @@ const FoodListings = () => {
                     <span className="status-icon">{getStatusIcon(food.status)}</span>
                     {food.status}
                   </div>
+                  {food.expiryStatus === 'spoiled' && (
+                    <div className="food-spoiled-badge">Spoiled</div>
+                  )}
                 </div>
                 <div className="recent-food-content">
                   <h3 className="recent-food-title">{food.title}</h3>
@@ -200,6 +214,23 @@ const FoodListings = () => {
         <div className="filters-header">
           <h2 className="filter-title">All Food Listings</h2>
           <div className="filter-controls">
+            <div className="filter-group">
+              <label htmlFor="expiryStatus">
+                <span className="filter-icon">🍽️</span>
+                Food Quality:
+              </label>
+              <select
+                id="expiryStatus"
+                name="expiryStatus"
+                value={filter.expiryStatus}
+                onChange={handleFilterChange}
+              >
+                <option value="eatable">Eatable Only</option>
+                <option value="spoiled">Spoiled Only</option>
+                <option value="">All (Both)</option>
+              </select>
+            </div>
+
             <div className="filter-group">
               <label htmlFor="status">
                 <span className="filter-icon">🔍</span>
@@ -267,6 +298,9 @@ const FoodListings = () => {
                     <span className="status-icon">{getStatusIcon(food.status)}</span>
                     {food.status}
                   </div>
+                  {food.expiryStatus === 'spoiled' && (
+                    <div className="food-spoiled-badge">Spoiled</div>
+                  )}
                   {isExpired(food.expiryDate) && (
                     <div className="food-expired-badge">Expired</div>
                   )}
@@ -295,6 +329,12 @@ const FoodListings = () => {
                       <span className="detail-label">Quantity</span>
                       <span className="detail-value">
                         {food.status === 'partial' ? food.quantity : food.quantity} {food.quantityUnit}
+                      </span>
+                    </div>
+                    <div className="food-detail">
+                      <span className="detail-label">Quality</span>
+                      <span className={`detail-value ${getExpiryStatusClass(food.expiryStatus)}`}>
+                        {food.expiryStatus === 'eatable' ? 'Eatable' : 'Spoiled'}
                       </span>
                     </div>
                     <div className="food-detail">
