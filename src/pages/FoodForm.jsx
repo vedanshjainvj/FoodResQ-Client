@@ -312,16 +312,23 @@ const FoodForm = () => {
   return (
     <div className="food-form-container">
       <div className="food-form-header">
-        <h1>{isEditMode ? 'Edit Food Listing' : 'Add New Food Listing'}</h1>
+        <div className="header-content">
+          <h1>{isEditMode ? 'Edit Food Listing' : 'Add New Food Listing'}</h1>
+          <p className="header-description">
+            {isEditMode 
+              ? 'Update the details of your food listing to ensure accurate information.' 
+              : 'Complete the form below to add a new food listing for donation.'}
+          </p>
+        </div>
         <Link to="/admin" className="food-form-back">
-          <span className="back-icon">←</span> Back to Dashboard
+          <span className="back-icon">←</span> Back
         </Link>
       </div>
 
       <div className="food-form-content">
         {submitError && (
           <div className="form-error-message">
-            <span className="error-icon">❌</span> {submitError}
+            <span className="error-icon">⚠️</span> {submitError}
           </div>
         )}
         
@@ -333,7 +340,7 @@ const FoodForm = () => {
         
         <form onSubmit={handleSubmit} className="food-form">
           <div className="form-section">
-            <h2 className="section-title">Basic Information</h2>
+            <h2 className="section-title info-icon">Basic Information</h2>
             
             <div className="form-group">
               <label htmlFor="title">Title <span className="required">*</span></label>
@@ -344,7 +351,7 @@ const FoodForm = () => {
                 value={formData.title}
                 onChange={handleChange}
                 className={formErrors.title ? 'form-control error' : 'form-control'}
-                placeholder="e.g., Fresh Vegetables from Restaurant"
+                placeholder="Enter food listing title"
               />
               {formErrors.title && <div className="field-error">{formErrors.title}</div>}
               <div className="char-counter">{formData.title.length}/100</div>
@@ -358,16 +365,17 @@ const FoodForm = () => {
                 value={formData.description}
                 onChange={handleChange}
                 className={formErrors.description ? 'form-control error' : 'form-control'}
-                placeholder="Describe the food, its condition, pickup instructions, etc."
-                rows="5"
+                placeholder="Describe the food, quantity, condition, and pickup instructions"
+                rows="4"
               ></textarea>
               {formErrors.description && <div className="field-error">{formErrors.description}</div>}
               <div className="char-counter">{formData.description.length}/500</div>
+              <div className="help-text">Provide useful details to help recipients determine if the food meets their needs.</div>
             </div>
           </div>
 
           <div className="form-section">
-            <h2 className="section-title">Quantity & Location</h2>
+            <h2 className="section-title quantity-icon">Quantity & Location</h2>
             
             <div className="form-row">
               <div className="form-group">
@@ -393,7 +401,7 @@ const FoodForm = () => {
                   value={formData.location}
                   onChange={handleChange}
                   className={formErrors.location ? 'form-control error' : 'form-control'}
-                  placeholder="e.g., Mumbai, Andheri East"
+                  placeholder="Enter pickup location"
                 />
                 {formErrors.location && <div className="field-error">{formErrors.location}</div>}
               </div>
@@ -401,7 +409,7 @@ const FoodForm = () => {
           </div>
 
           <div className="form-section">
-            <h2 className="section-title">Status & Expiry</h2>
+            <h2 className="section-title status-icon">Status & Expiry</h2>
             
             <div className="form-row">
               <div className="form-group">
@@ -440,11 +448,11 @@ const FoodForm = () => {
           </div>
 
           <div className="form-section">
-            <h2 className="section-title">Food Image</h2>
+            <h2 className="section-title image-icon">Food Image</h2>
             
             <div className="form-group">
-              <label htmlFor="image">Upload Image (Optional)</label>
-              <div className="image-upload-container">
+              <label htmlFor="image">Upload Image</label>
+              <div className="image-upload-container" onClick={handleBrowseClick}>
                 <input
                   type="file"
                   id="image"
@@ -454,10 +462,17 @@ const FoodForm = () => {
                   className={formErrors.image ? 'form-control file-input error' : 'form-control file-input'}
                   ref={fileInputRef}
                 />
-                <div className="file-upload-button" onClick={handleBrowseClick}>
-                  <span>Choose File</span>
+                <div className="upload-area">
+                  <div className="upload-icon">📷</div>
+                  <div className="upload-text">
+                    <strong>Drag & drop an image here</strong>
+                    <span>or</span>
+                  </div>
+                  <div className="file-upload-button">
+                    <span>Choose File</span>
+                  </div>
+                  {imageFile && <div className="file-name">{imageFile.name}</div>}
                 </div>
-                {imageFile && <div className="file-name">{imageFile.name}</div>}
               </div>
               {formErrors.image && <div className="field-error">{formErrors.image}</div>}
               
@@ -496,16 +511,28 @@ const FoodForm = () => {
                 )}
               </div>
               
-              <div className="help-text">Recommended: JPEG or PNG, max 5MB. A clear image helps others identify the food.</div>
+              <div className="help-text">Recommended: JPEG or PNG, max 5MB.</div>
             </div>
           </div>
 
           <div className="form-actions">
             <button type="button" onClick={() => navigate('/admin')} className="btn-cancel">
-              Cancel
+              <span className="btn-icon">←</span> Cancel
             </button>
             <button type="submit" className="btn-submit" disabled={isLoading || uploadingImage}>
-              {isLoading || uploadingImage ? 'Saving...' : isEditMode ? 'Update Listing' : 'Create Listing'}
+              {isLoading || uploadingImage ? (
+                <>
+                  <span className="spinner"></span> Saving...
+                </>
+              ) : isEditMode ? (
+                <>
+                  <span className="btn-icon">✓</span> Update
+                </>
+              ) : (
+                <>
+                  <span className="btn-icon">+</span> Create
+                </>
+              )}
             </button>
           </div>
         </form>

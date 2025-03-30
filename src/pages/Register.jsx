@@ -7,6 +7,7 @@ const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     password: '',
     confirmPassword: ''
   });
@@ -14,7 +15,7 @@ const Register = () => {
   const { register, isLoading } = useAuth();
   const navigate = useNavigate();
 
-  const { name, email, password, confirmPassword } = formData;
+  const { name, email, phone, password, confirmPassword } = formData;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,7 +25,7 @@ const Register = () => {
     e.preventDefault();
     setFormError('');
 
-    if (!name || !email || !password) {
+    if (!name || !email || !phone || !password) {
       setFormError('Please fill in all fields');
       return;
     }
@@ -36,6 +37,13 @@ const Register = () => {
 
     if (password.length < 6) {
       setFormError('Password must be at least 6 characters');
+      return;
+    }
+
+    // Validate phone number (simple validation for 10 digits)
+    const phoneRegex = /^[0-9]{10,15}$/;
+    if (!phoneRegex.test(phone)) {
+      setFormError('Please enter a valid phone number (10-15 digits)');
       return;
     }
 
@@ -84,6 +92,21 @@ const Register = () => {
               placeholder="Enter your email"
               required
             />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="phone" className="form-label">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={phone}
+              onChange={handleChange}
+              className="form-control"
+              placeholder="Enter your phone number"
+              required
+            />
+            <small className="form-text">We'll use this for WhatsApp notifications</small>
           </div>
           
           <div className="form-group">
