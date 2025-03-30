@@ -1,0 +1,155 @@
+.footer {
+  background-color: #263238;
+  color: #ffffff;
+  padding: 50px 0 20px;
+  margin-top: 60px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.footer-logo {
+  flex: 0 0 100%;
+  margin-bottom: 30px;
+}
+
+.footer-logo h2 {
+  color: #4caf50;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.footer-logo p {
+  color: #b0bec5;
+  font-size: 14px;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex: 0 0 100%;
+}
+
+.footer-nav-section {
+  flex: 0 0 calc(33.33% - 20px);
+  margin-bottom: 20px;
+}
+
+.footer-nav-section h3 {
+  color: #4caf50;
+  font-size: 18px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.footer-nav-section h3:after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background-color: #4caf50;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.footer-nav-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-nav-section ul li a {
+  color: #b0bec5;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.footer-nav-section ul li a:hover {
+  color: #ffffff;
+}
+
+.footer-social {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.footer-social h3 {
+  color: #4caf50;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #37474f;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 18px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: #4caf50;
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #37474f;
+}
+
+.footer-bottom p {
+  color: #b0bec5;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+  .footer-logo {
+    flex: 0 0 30%;
+    margin-bottom: 0;
+  }
+  
+  .footer-nav {
+    flex: 0 0 65%;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-nav-section {
+    flex: 0 0 100%;
+  }
+  
+  .social-icons {
+    flex-wrap: wrap;
+  }
+} 

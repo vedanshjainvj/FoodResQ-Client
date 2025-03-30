@@ -80,11 +80,23 @@ export const authService = {
 export const foodService = {
   getAllFood: async (params = {}) => {
     const response = await api.get('/food', { params });
+    
+    // Add cache info to the response for debugging if needed
+    if (response.data.fromCache) {
+      console.log('Data loaded from cache');
+    }
+    
     return response.data;
   },
   
   getFood: async (id) => {
     const response = await api.get(`/food/${id}`);
+    
+    // Add cache info to the response for debugging if needed
+    if (response.data.fromCache) {
+      console.log(`Food ${id} loaded from cache`);
+    }
+    
     return response.data;
   },
   
