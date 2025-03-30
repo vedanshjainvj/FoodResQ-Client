@@ -1,0 +1,137 @@
+.donation-section {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+
+.donation-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+
+.donation-description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  font-size: 18px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.donation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.donation-card {
+  background-color: #f9fafb;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.donation-card:hover {
+  transform: translateY(-5px);
+}
+
+.donation-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.donation-card-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.donation-card-text {
+  color: #6b7280;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.donation-link {
+  display: inline-block;
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+}
+
+.donation-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.donation-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.donation-cta {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  color: white;
+}
+
+.donation-cta-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.donation-cta-text {
+  margin-bottom: 25px;
+  font-size: 18px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.donation-cta-button {
+  display: inline-block;
+  background-color: white;
+  color: var(--primary-color);
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.donation-cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .donation-section {
+    padding: 60px 20px;
+  }
+  
+  .donation-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .donation-cta {
+    padding: 30px 20px;
+  }
+} 

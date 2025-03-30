@@ -1,0 +1,175 @@
+.foodwaste-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.foodwaste-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.foodwaste-header h1 {
+  color: var(--text-color);
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.foodwaste-header p {
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.foodwaste-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.foodwaste-content section {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.foodwaste-content h2 {
+  color: var(--text-color);
+  font-size: 24px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #f3f4f6;
+  padding-bottom: 15px;
+}
+
+/* Tips Section */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.tip-card {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.tip-card:hover {
+  transform: translateY(-5px);
+}
+
+.tip-icon {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.tip-card h3 {
+  color: var(--primary-color);
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.tip-card p {
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Impact Section */
+.impact-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.impact-card {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.impact-card h3 {
+  color: var(--text-color);
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.impact-number {
+  color: var(--primary-color);
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.impact-card p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Donation History Section */
+.donation-table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.donation-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.donation-table th,
+.donation-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.donation-table th {
+  background-color: #f9fafb;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.donation-table tr:hover {
+  background-color: #f9fafb;
+}
+
+.no-donations {
+  color: #6b7280;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.schedule-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.schedule-btn:hover {
+  background-color: #15803d;
+}
+
+@media (max-width: 768px) {
+  .foodwaste-header h1 {
+    font-size: 28px;
+  }
+  
+  .tips-grid,
+  .impact-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .foodwaste-content section {
+    padding: 20px;
+  }
+} 

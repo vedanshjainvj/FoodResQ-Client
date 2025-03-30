@@ -1,0 +1,225 @@
+.admin-dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.admin-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.admin-dashboard-header h1 {
+  font-size: 32px;
+  color: var(--text-color);
+}
+
+.admin-add-btn {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.admin-add-btn::before {
+  content: '+';
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+.admin-add-btn:hover {
+  background-color: #15803d;
+}
+
+.admin-content {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.admin-section {
+  padding: 30px;
+}
+
+.admin-section h2 {
+  font-size: 24px;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.admin-description {
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.admin-table-container {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-table th {
+  background-color: #f9fafb;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.admin-table tr:hover {
+  background-color: #f9fafb;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.status-badge.available {
+  background-color: #10b981;
+  color: white;
+}
+
+.status-badge.reserved {
+  background-color: #f59e0b;
+  color: white;
+}
+
+.status-badge.collected {
+  background-color: #6b7280;
+  color: white;
+}
+
+.status-badge.partial {
+  background-color: #9c27b0;
+}
+
+.action-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-action-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.view-btn {
+  background-color: #f3f4f6;
+}
+
+.view-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.edit-btn {
+  background-color: #f3f4f6;
+}
+
+.edit-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.delete-btn {
+  background-color: #f3f4f6;
+}
+
+.delete-btn:hover {
+  background-color: #fee2e2;
+}
+
+.admin-unauthorized {
+  max-width: 600px;
+  margin: 100px auto;
+  text-align: center;
+  padding: 40px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.admin-unauthorized h1 {
+  color: #ef4444;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.admin-unauthorized p {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.back-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.admin-loading,
+.admin-error,
+.admin-empty {
+  padding: 30px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.admin-error {
+  color: #ef4444;
+}
+
+.admin-empty p {
+  margin-bottom: 20px;
+}
+
+.admin-add-btn-small {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .admin-section {
+    padding: 20px;
+  }
+} 

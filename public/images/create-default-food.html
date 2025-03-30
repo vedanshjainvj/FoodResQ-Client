@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Default Food Image</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    canvas {
+      border: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .instructions {
+      max-width: 600px;
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #f8f8f8;
+      border-left: 4px solid #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <h1>Default Food Image Generator</h1>
+  
+  <div class="instructions">
+    <p>This page creates a simple default food image with a plate and utensils icon.</p>
+    <p>Click the "Download Image" button to save the image as "default-food.jpg".</p>
+    <p>Then move this file to your /images folder in your project.</p>
+  </div>
+
+  <canvas id="foodCanvas" width="800" height="600"></canvas>
+  
+  <button id="downloadBtn">Download Image</button>
+
+  <script>
+    // Get the canvas and context
+    const canvas = document.getElementById('foodCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set background
+    ctx.fillStyle = '#f8f9fa';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw a plate
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, canvas.height / 2, 200, 0, Math.PI * 2);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+    ctx.strokeStyle = '#e0e0e0';
+    ctx.lineWidth = 10;
+    ctx.stroke();
+
+    // Add some utensils
+    ctx.font = '180px Arial';
+    ctx.fillStyle = '#6b7280';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('🍽️', canvas.width / 2, canvas.height / 2);
+
+    // Add text
+    ctx.font = '30px Arial';
+    ctx.fillStyle = '#4b5563';
+    ctx.fillText('Food Image', canvas.width / 2, canvas.height / 2 + 150);
+
+    // Add project name
+    ctx.font = '20px Arial';
+    ctx.fillStyle = '#6b7280';
+    ctx.fillText('Food Waste Reduction App', canvas.width / 2, canvas.height - 40);
+
+    // Download functionality
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.download = 'default-food.jpg';
+      link.href = canvas.toDataURL('image/jpeg', 0.8);
+      link.click();
+    });
+  </script>
+</body>
+</html> 
