@@ -2,11 +2,11 @@
  * Cloudinary configuration settings
  */
 const cloudinaryConfig = {
-  cloudName: 'foodwaste', // You should replace with your actual Cloudinary cloud name
-  uploadPreset: 'food_donation', // Replace with your Cloudinary upload preset
+  cloudName: 'djjew9552', // Updated with your actual Cloudinary cloud name
+  uploadPreset: 'food_donation',
   apiUrl: 'https://api.cloudinary.com/v1_1',
   
-  // If Cloudinary is not configured, set this to true to use local image handling
+  // Set to false since we're handling the uploads on the backend
   useLocalImages: true,
   
   // Helper method to get full upload URL
